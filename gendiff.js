@@ -1,20 +1,18 @@
 #!/usr/bin/env node
-
-import { Command } from 'commander'
-
-import genDiff from 'file:///C:/Users/kpark/OneDrive/Рабочий%20стол/Project/frontend-project-46/src/index.js';
-
-const program = new Command()
-
+import { program } from 'commander';
+import parseJsonFile from './parser.js';
 program
   .name('gendiff')
   .description('Compares two configuration files and shows a difference.')
-  .version('0.0.1')
+  .version('1.0.0')
   .argument('<filepath1>', 'path to first file')
   .argument('<filepath2>', 'path to second file')
-  .option('-f, --format [type]', 'output format (default: "stylish")', 'stylish')
-  .action((filepath1, filepath2, options) => {
-    console.log(genDiff(filepath1, filepath2, options.format))
+  .action((filepath1, filepath2) => {
+    const data1 = parseJsonFile(filepath1);
+    const data2 = parseJsonFile(filepath2);
+    console.log('Data from file 1:', data1);
+    console.log('Data from file 2:', data2);
+    
   })
-
-program.parse()
+  .helpOption('-h, --help', 'display help for command');
+program.parse(process.argv);
