@@ -1,18 +1,18 @@
-#!/usr/bin/env node
-import { program } from 'commander';
-import parseJsonFile from './parser.js';
-program
-  .name('gendiff')
-  .description('Compares two configuration files and shows a difference.')
-  .version('1.0.0')
-  .argument('<filepath1>', 'path to first file')
-  .argument('<filepath2>', 'path to second file')
-  .action((filepath1, filepath2) => {
-    const data1 = parseJsonFile(filepath1);
-    const data2 = parseJsonFile(filepath2);
-    console.log('Data from file 1:', data1);
-    console.log('Data from file 2:', data2);
-    
-  })
-  .helpOption('-h, --help', 'display help for command');
-program.parse(process.argv);
+import _ from 'lodash';
+   const genDiff = (data1, data2) => {
+     const keys = _.union(Object.keys(data1), Object.keys(data2)).sort();
+     const result = keys.map((key) => {
+       if (!_.has(data1, key)) {
+         return `  + ${key}: ${data2[key]}`;
+       }
+       if (!_.has(data2, key)) {
+         return `  - ${key}: ${data1[key]}`;
+       }
+       if (data1[key] !== data2[key]) {
+         return `  - ${key}: ${data1[key]}\n  + ${key}: ${data2[key]}`;
+       }
+       return `    ${key}: ${data1[key]}`;
+     });
+     return `{\n${result.join('\n')}\n}`;
+   };
+   export default genDiff;
