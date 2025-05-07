@@ -1,9 +1,10 @@
 #!/usr/bin/env node
 
-import { Command } from 'commander';
-import genDiff from './node_modules/commander/index.js';
+import { Command } from 'commander'
 
-const program = new Command();
+import genDiff from 'file:///C:/Users/kpark/OneDrive/Рабочий%20стол/Project/frontend-project-46/src/index.js';
+
+const program = new Command()
 
 program
   .name('gendiff')
@@ -13,7 +14,7 @@ program
   .argument('<filepath2>', 'path to second file')
   .option('-f, --format [type]', 'output format (default: "stylish")', 'stylish')
   .action((filepath1, filepath2, options) => {
-    console.log(genDiff(filepath1, filepath2, options.format));
-  });
+    console.log(genDiff(filepath1, filepath2, options.format))
+  })
 
-program.parse();
+program.parse()

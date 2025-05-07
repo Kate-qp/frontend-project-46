@@ -1,5 +1,5 @@
 {
-  "name": "frontend-project-46",
+  "name": "@hexlet/code",
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Kate-qp/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kate-qp/frontend-project-46/actions)",
   "main": "index.js",
@@ -20,5 +20,6 @@
   "homepage": "https://github.com/Kate-qp/frontend-project-46#readme",
   "dependencies": {
     "commander": "^13.1.0"
-  }
+  },
+  "devDependencies": {}
 }
