@@ -1,6 +1,3 @@
-import compareFiles from './compare.js';
-const genDiff = (filepath1, filepath2) => {
-  const result = compareFiles(filepath1, filepath2);
-  return result;
-};
+import genDiff from './genDiff.js';
+
 export default genDiff;

@@ -1,2 +1,2 @@
 lint:
-    eslint .
+	eslint .

@@ -1,22 +1,25 @@
-import parser from './parsers.js'
-import { getFileContent, getFilePath, getFileExt } from '../tests/utils.js'
+import { readFileSync } from 'fs';
+import path from 'path';
+import parse from './parsers.js';
+import buildDiff from './buildDiff.js';
+import format from './formatters/index.js';
 
-const getFileData = (filePath) => {
-  const absolutePath = getFilePath(filePath)
+const getFileContent = (filepath) => {
+  const absolutePath = path.resolve(process.cwd(), filepath);
+  return readFileSync(absolutePath, 'utf-8');
+};
 
-  const content = getFileContent(absolutePath)
-  const ext = getFileExt(absolutePath)
+const getFileFormat = (filepath) => path.extname(filepath).slice(1);
 
-  return parser(content, ext)
-}
+const genDiff = (filepath1, filepath2, formatName = 'stylish') => {
+  const content1 = getFileContent(filepath1);
+  const content2 = getFileContent(filepath2);
+  
+  const data1 = parse(content1, getFileFormat(filepath1));
+  const data2 = parse(content2, getFileFormat(filepath2));
+  
+  const diff = buildDiff(data1, data2);
+  return format(diff, formatName);
+};
 
-const genDiff = (filePath1, filePath2, formatName = 'stylish') => {
-  const parserData1 = getFileData(filePath1)
-  const parserData2 = getFileData(filePath2)
-
-  const astTree = buildAST(parserData1, parserData2)
-
-  return genToFormat(astTree, formatName)
-}
-
-export default genDiff
+export default genDiff;
