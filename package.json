@@ -7,12 +7,10 @@
     "test": "jest --detectOpenHandles --forceExit",
     "lint": "eslint ."
   },
-  
   "repository": {
-  "type": "git",
-  "url": "git+https://github.com/Kate-qp/frontend-project-46.git"
-},
-
+    "type": "git",
+    "url": "git+https://github.com/Kate-qp/frontend-project-46.git"
+  },
   "keywords": [],
   "author": "",
   "license": "ISC",
