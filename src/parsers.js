@@ -1,5 +1,5 @@
-import _ from 'lodash'
-import yaml from 'js-yaml'
+import _ from 'lodash';
+import yaml from 'js-yaml';
 
 const parsers = {
   json: JSON.parse,
@@ -8,11 +8,11 @@ const parsers = {
 };
 
 export default (data, ext) => {
-  const format = ext.startsWith('.') ? ext.slice(1) : ext
-  
+  const format = ext.startsWith('.') ? ext.slice(1) : ext;
+
   if (!_.has(parsers, format)) {
-    throw new Error(`Unsupported format: '${format}'`)
+    throw new Error(`Unsupported format: '${format}'`);
   }
 
-  return parsers[format](data)
-}
+  return parsers[format](data);
+};

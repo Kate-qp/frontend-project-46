@@ -16,14 +16,14 @@ const buildDiff = (obj1, obj2) => {
       return {
         key,
         type: 'nested',
-        children: buildDiff(obj1[key], obj2[key])
+        children: buildDiff(obj1[key], obj2[key]),
       };
     }
     return {
       key,
       type: 'changed',
       oldValue: obj1[key],
-      newValue: obj2[key]
+      newValue: obj2[key],
     };
   });
 };
