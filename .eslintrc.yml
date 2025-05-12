@@ -22,3 +22,5 @@ rules:
     - allow:
         - __filename
         - __dirname
+  ignorePatterns:
+  - "fixtures/**"
