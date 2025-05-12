@@ -1,35 +1,56 @@
-const stringify = (value) => {
-  if (typeof value === 'object' && value !== null) {
+import _ from 'lodash';
+
+const stringify = (data) => {
+  if (_.isObject(data)) {
     return '[complex value]';
   }
-  if (value === null || typeof value === 'boolean') {
-    return String(value);
+
+  if (_.isString(data)) {
+    return `'${data}'`;
   }
-  return typeof value === 'string' ? `'${value}'` : String(value);
+
+  return data;
 };
 
-export default (diff) => {
-  const iter = (nodes, path = []) => {
-    return nodes.flatMap((node) => {
-      const currentPath = [...path, node.key];
-      const property = currentPath.join('.');
+const format = (path, node) => {
+  const {
+    value, type, oldValue, newValue,
+  } = node;
+  const addedType = () => `Property '${path}' was added with value: ${stringify(value)}`;
+  const removedType = () => `Property '${path}' was removed`;
+  const changedType = () => `Property '${path}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`;
 
-      switch (node.type) {
-        case 'added':
-          return `Property '${property}' was added with value: ${stringify(node.value)}`;
-        case 'removed':
-          return `Property '${property}' was removed`;
-        case 'changed':
-          return `Property '${property}' was updated. From ${stringify(node.oldValue)} to ${stringify(node.newValue)}`;
-        case 'nested':
-          return iter(node.children, currentPath);
-        case 'unchanged':
-          return [];
-        default:
-          throw new Error(`Unknown node type: ${node.type}`);
-      }
-    }).join('\n');
+  const renders = {
+    added: addedType,
+    removed: removedType,
+    changed: changedType,
   };
 
-  return iter(diff);
+  if (!_.has(renders, type)) {
+    throw new Error(`Type '${type}' is undefined`);
+  }
+
+  return renders[type]();
 };
+
+const build = (astTree) => {
+  const iter = (innerAst, path) => {
+    const result = innerAst
+      .filter((node) => node.type !== 'unchanged')
+      .map((node) => {
+        const currentPath = [...path, node.key];
+
+        if (node.type === 'nested') {
+          return iter(node.children, currentPath);
+        }
+
+        return format(currentPath.join('.'), node);
+      });
+
+    return result.join('\n');
+  };
+
+  return iter(astTree, []);
+};
+
+export default (astTree) => build(astTree);

@@ -1,16 +1,18 @@
-import yaml from 'js-yaml';
-import _ from 'lodash';
+import _ from 'lodash'
+import yaml from 'js-yaml'
 
 const parsers = {
-  yaml: (data) => yaml.load(data),
-  yml: (data) => yaml.load(data),
-  json: (data) => JSON.parse(data),
+  json: JSON.parse,
+  yml: yaml.load,
+  yaml: yaml.load,
 };
 
 export default (data, ext) => {
-  if (!_.has(parsers, ext)) {
-    throw new Error(`Ext '${ext}' not found!`);
+  const format = ext.startsWith('.') ? ext.slice(1) : ext
+  
+  if (!_.has(parsers, format)) {
+    throw new Error(`Unsupported format: '${format}'`)
   }
 
-  return parsers[ext](data);
-};
+  return parsers[format](data)
+}
