@@ -7,6 +7,10 @@ env:
 extends:
   - airbnb-base
 
+plugins:
+  - '@typescript-eslint'
+  - '@stylistic'
+
 parserOptions:
   ecmaVersion: 2022
   sourceType: module
@@ -15,18 +19,20 @@ ignorePatterns:
   - "fixtures/**"
 
 rules:
-semi: ["off"]
-  "no-console": "off"
-  "import/extensions": ["error", "ignorePackages"]
-  "import/no-extraneous-dependencies": [
-    "error",
+  '@stylistic/semi': ['error', 'never']
+  '@stylistic/arrow-parens': ['error', 'as-needed']
+  '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }]
+  'no-console': 'off'
+  'import/extensions': ['error', 'ignorePackages']
+  'import/no-extraneous-dependencies': [
+    'error',
     {
-      "devDependencies": true
+      'devDependencies': true
     }
   ]
-  "no-underscore-dangle": [
-    "error",
+  'no-underscore-dangle': [
+    'error',
     {
-      "allow": ["__filename", "__dirname"]
+      'allow': ['__filename', '__dirname']
     }
   ]
