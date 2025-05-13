@@ -1,14 +1,14 @@
-import plain from './plain.js';
-import stylish from './stylish.js';
-import jsonFormat from './json.js';
+import plain from './plain.js'
+import stylish from './stylish.js'
+import jsonFormat from './json.js'
 
 export default (diff, formatName) => {
   switch (formatName) {
     case 'plain':
-      return plain(diff);
+      return plain(diff)
     case 'json':
-      return jsonFormat(diff);
+      return jsonFormat(diff)
     default:
-      return stylish(diff);
+      return stylish(diff)
   }
-};
+}
