@@ -36,3 +36,6 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+      - name: Debug test-report.xml
+        run: |
+            cat test-report.xml
