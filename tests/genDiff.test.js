@@ -1,13 +1,13 @@
-import { test, expect } from '@jest/globals';
+import { test, expect } from '@jest/globals'
 
-import * as path from 'path';
-import buildDiff from '../src/index.js';
+import * as path from 'path'
+import buildDiff from '../src/index.js'
 
-const getFixturePath = (filename) => path.join('fixtures', filename);
+const getFixturePath = (filename) => path.join('fixtures', filename)
 
 test('buildDiff stylish json', () => {
-  const path1 = getFixturePath('file1.json');
-  const path2 = getFixturePath('file2.json');
+  const path1 = getFixturePath('file1.json')
+  const path2 = getFixturePath('file2.json')
   expect(buildDiff(path1, path2, 'stylish')).toBe(`{
     common: {
       + follow: false
@@ -51,12 +51,12 @@ test('buildDiff stylish json', () => {
         }
         fee: 100500
     }
-}`);
-});
+}`)
+})
 
 test('buildDiff stylish yml', () => {
-  const path1 = getFixturePath('file1.yml');
-  const path2 = getFixturePath('file2.yml');
+  const path1 = getFixturePath('file1.yml')
+  const path2 = getFixturePath('file2.yml')
   expect(buildDiff(path1, path2, 'stylish')).toBe(`{
     common: {
       + follow: false
@@ -100,12 +100,12 @@ test('buildDiff stylish yml', () => {
         }
         fee: 100500
     }
-}`);
-});
+}`)
+})
 
 test('buildDiff plain json', () => {
-  const path1 = getFixturePath('file1.json');
-  const path2 = getFixturePath('file2.json');
+  const path1 = getFixturePath('file1.json')
+  const path2 = getFixturePath('file2.json')
   expect(buildDiff(path1, path2, 'plain')).toBe(`Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to null
@@ -116,12 +116,12 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`);
-});
+Property 'group3' was added with value: [complex value]`)
+})
 
 test('buildDiff plain yml', () => {
-  const path1 = getFixturePath('file1.yml');
-  const path2 = getFixturePath('file2.yml');
+  const path1 = getFixturePath('file1.yml')
+  const path2 = getFixturePath('file2.yml')
   expect(buildDiff(path1, path2, 'plain')).toBe(`Property 'common.follow' was added with value: false
 Property 'common.setting2' was removed
 Property 'common.setting3' was updated. From true to null
@@ -132,5 +132,5 @@ Property 'common.setting6.ops' was added with value: 'vops'
 Property 'group1.baz' was updated. From 'bas' to 'bars'
 Property 'group1.nest' was updated. From [complex value] to 'str'
 Property 'group2' was removed
-Property 'group3' was added with value: [complex value]`);
-});
+Property 'group3' was added with value: [complex value]`)
+})
