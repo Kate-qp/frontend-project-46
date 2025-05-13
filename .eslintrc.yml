@@ -4,12 +4,11 @@ env:
   node: true
   jest: true
 
-extends:
-  - airbnb-base
+extends: airbnb-base
 
 plugins:
-  - '@typescript-eslint'
-  - '@stylistic'
+  - "@typescript-eslint"
+  - "@stylistic"
 
 parserOptions:
   ecmaVersion: 2022
@@ -19,20 +18,12 @@ ignorePatterns:
   - "fixtures/**"
 
 rules:
-  '@stylistic/semi': ['error', 'never']
-  '@stylistic/arrow-parens': ['error', 'as-needed']
-  '@stylistic/no-multiple-empty-lines': ['error', { max: 1 }]
-  'no-console': 'off'
-  'import/extensions': ['error', 'ignorePackages']
-  'import/no-extraneous-dependencies': [
-    'error',
-    {
-      'devDependencies': true
-    }
-  ]
-  'no-underscore-dangle': [
-    'error',
-    {
-      'allow': ['__filename', '__dirname']
-    }
-  ]
+  semi: ["error", "never"]
+  "@stylistic/semi": "off"
+  "arrow-parens": ["error", "as-needed"]
+  "@stylistic/arrow-parens": "off"
+  "@stylistic/no-multiple-empty-lines": ["error", { max: 1 }]
+  "no-console": "off"
+  "import/extensions": ["error", "ignorePackages"]
+  "import/no-extraneous-dependencies": ["error", { "devDependencies": true }]
+  "no-underscore-dangle": ["error", { "allow": ["__filename", "__dirname"] }]
