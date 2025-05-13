@@ -17,7 +17,7 @@ const format = (path, node) => {
     value, type, oldValue, newValue,
   } = node
   const addedType = () => `Property '${path}' was added with value: ${stringify(value)}`
-  const removedType = () => `Property '${path}' was removed`;
+  const removedType = () => `Property '${path}' was removed`
   const changedType = () => `Property '${path}' was updated. From ${stringify(oldValue)} to ${stringify(newValue)}`
 
   const renders = {

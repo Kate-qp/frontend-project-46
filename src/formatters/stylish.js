@@ -4,7 +4,7 @@ const indentSymbol = ' '
 const indentSize = 2
 const baseIndentSize = 4
 
-const makeIndent = (depth) => `${indentSymbol.repeat(depth)}`
+const makeIndent = depth => `${indentSymbol.repeat(depth)}`
 
 const stringify = (data, depth) => {
   if (_.isPlainObject(data)) {
@@ -30,12 +30,11 @@ const format = (node, depth) => {
 
   const addedType = () => `${currentIndent}+ ${key}: ${stringify(value, depth + 1)}`
   const removedType = () => `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`
-  const changedType = () => ([
+  const changedType = () => [
     `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`,
     `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`,
   ]
     .join('\n')
-  )
   const unchangedType = () => `${currentIndent}  ${key}: ${value}`
 
   const renders = {
@@ -52,10 +51,10 @@ const format = (node, depth) => {
   return renders[type]()
 }
 
-const build = (astTree) => {
+const build = astTree => {
   const iter = (innerAst, depth = 0) => {
     const result = innerAst
-      .map((node) => {
+      .map(node => {
         const { key, children, type } = node
 
         if (type === 'nested') {
@@ -77,4 +76,4 @@ const build = (astTree) => {
   return iter(astTree)
 }
 
-export default (astTree) => build(astTree)
+export default astTree => build(astTree)
