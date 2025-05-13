@@ -3,12 +3,8 @@
   "version": "1.0.0",
   "description": "[![Actions Status](https://github.com/Kate-qp/frontend-project-46/actions/workflows/hexlet-check.yml/badge.svg)](https://github.com/Kate-qp/frontend-project-46/actions)",
   "main": "gendiff.js",
-  "os": [
-    "win32"
-  ],
-  "cpu": [
-    "x64"
-  ],
+  "os": ["linux", "win32"],
+  "cpu": ["x64"],
   "scripts": {
     "test": "jest --detectOpenHandles --forceExit",
     "lint": "eslint ."
