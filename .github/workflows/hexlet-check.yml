@@ -36,19 +36,9 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         with:
           args: >
-            -Dsonar.branch.name=main
-            -Dsonar.projectKey=frontend-project-46
+              -Dsonar.branch.name=main
+              -Dsonar.projectKey=frontend-project-46
+              -Dsonar.organization=Kate-qp
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
           SONAR_HOST_URL: https://sonarcloud.io
-
-      - name: Install sonar-scanner
-        run: |
-          mkdir -p /home/runner/work/_temp/sonarscanner
-          cd /home/runner/work/_temp/sonarscanner
-          SCANNER_FILE_NAME=sonar-scanner-cli-7.1.0.4889-linux-x64.zip
-          SCANNER_URI=https://binaries.sonarsource.com/Distribution/sonar-scanner-cli/$SCANNER_FILE_NAME
-          wget --no-verbose --user-agent=sonarqube-scan-action $SCANNER_URI
-          unzip -q -o $SCANNER_FILE_NAME
-          mv -f sonar-scanner-7.1.0.4889-linux-x64 /home/runner/work/_temp/sonar-scanner-cli-7.1.0.4889-Linux-X64
-          echo "${RUNNER_TEMP}/sonar-scanner-cli-7.1.0.4889-Linux-X64/bin" >> $GITHUB_PATH
