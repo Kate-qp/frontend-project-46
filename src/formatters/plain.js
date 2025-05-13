@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const stringify = (data) => {
+const stringify = data => {
   if (_.isObject(data)) {
     return '[complex value]'
   }
@@ -14,7 +14,7 @@ const stringify = (data) => {
 
 const format = (path, node) => {
   const {
-    value, type, oldValue, newValue,
+    value, type, oldValue, newValue
   } = node
   const addedType = () => `Property '${path}' was added with value: ${stringify(value)}`
   const removedType = () => `Property '${path}' was removed`
@@ -23,7 +23,7 @@ const format = (path, node) => {
   const renders = {
     added: addedType,
     removed: removedType,
-    changed: changedType,
+    changed: changedType
   }
 
   if (!_.has(renders, type)) {
@@ -33,11 +33,11 @@ const format = (path, node) => {
   return renders[type]()
 }
 
-const build = (astTree) => {
+const build = astTree => {
   const iter = (innerAst, path) => {
     const result = innerAst
-      .filter((node) => node.type !== 'unchanged')
-      .map((node) => {
+      .filter(node => node.type !== 'unchanged')
+      .map(node => {
         const currentPath = [...path, node.key]
 
         if (node.type === 'nested') {
@@ -53,4 +53,4 @@ const build = (astTree) => {
   return iter(astTree, [])
 }
 
-export default (astTree) => build(astTree)
+export default astTree => build(astTree)

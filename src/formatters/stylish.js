@@ -24,7 +24,7 @@ const stringify = (data, depth) => {
 
 const format = (node, depth) => {
   const {
-    key, value, type, oldValue, newValue,
+    key, value, type, oldValue, newValue
   } = node
   const currentIndent = makeIndent(depth * baseIndentSize + indentSize)
 
@@ -32,16 +32,15 @@ const format = (node, depth) => {
   const removedType = () => `${currentIndent}- ${key}: ${stringify(value, depth + 1)}`
   const changedType = () => [
     `${currentIndent}- ${key}: ${stringify(oldValue, depth + 1)}`,
-    `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`,
-  ]
-    .join('\n')
+    `${currentIndent}+ ${key}: ${stringify(newValue, depth + 1)}`
+  ].join('\n')
   const unchangedType = () => `${currentIndent}  ${key}: ${value}`
 
   const renders = {
     added: addedType,
     removed: removedType,
     changed: changedType,
-    unchanged: unchangedType,
+    unchanged: unchangedType
   }
 
   if (!_.has(renders, type)) {

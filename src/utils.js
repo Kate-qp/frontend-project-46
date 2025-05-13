@@ -13,8 +13,4 @@ export const getFilePath = filePath => {
 
 export const getFileContent = filePath => readFileSync(filePath).toString()
 
-export const getFileExt = filePath => {
-  const ext = extname(filePath)
-
-  return ext.slice(1)
-}
+export const getFileExt = filePath => extname(filePath).slice(1)
