@@ -36,6 +36,7 @@ jobs:
         uses: SonarSource/sonarqube-scan-action@v5
         with:
           args: >
+            -Dsonar.organization=Kate-qp
             -Dsonar.branch.name=main
             -Dsonar.projectKey=frontend-project-46
         env:
