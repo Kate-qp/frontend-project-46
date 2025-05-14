@@ -1,7 +1,7 @@
 import { existsSync, readFileSync } from 'fs'
 import { extname, resolve } from 'path'
 
-export const getFilePath = filePath => {
+export const getFilePath = (filePath) => {
   const absolutePath = resolve(process.cwd(), filePath)
 
   if (!existsSync(absolutePath)) {

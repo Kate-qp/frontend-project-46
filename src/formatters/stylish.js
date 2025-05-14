@@ -4,7 +4,7 @@ const indentSymbol = ' '
 const indentSize = 2
 const baseIndentSize = 4
 
-const makeIndent = depth=> `${indentSymbol.repeat(depth)}`
+const makeIndent = (depth) => `${indentSymbol.repeat(depth)}`
 
 const stringify = (data, depth) => {
   if (_.isPlainObject(data)) {
@@ -50,7 +50,7 @@ const format = (node, depth) => {
   return renders[type]()
 }
 
-const build = astTree => {
+const build = (astTree) => {
   const iter = (innerAst, depth = 0) => {
     const result = innerAst
       .map((node) => {
