@@ -2,7 +2,7 @@ import { test, expect } from '@jest/globals'
 import * as path from 'path'
 import buildDiff from '../src/index.js'
 
-const getFixturePath = (filename) => path.join('fixtures', filename)
+const getFixturePath = filename => path.join('fixtures', filename)
 
 test('buildDiff stylish json', () => {
   const path1 = getFixturePath('file1.json')
