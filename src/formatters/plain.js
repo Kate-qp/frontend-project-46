@@ -1,6 +1,6 @@
 import _ from 'lodash'
 
-const stringify = (data) => {
+const stringify = data => {
   if (_.isObject(data)) {
     return '[complex value]'
   }
@@ -36,10 +36,10 @@ const format = (path, node) => {
   return renders[type]()
 }
 
-const build = (astTree) => {
+const build = astTree => {
   const iter = (innerAst, path) => {
     const result = innerAst
-      .filter((node) => node.type !== 'unchanged')
+      .filter(node => node.type !== 'unchanged')
       .map((node) => {
         const currentPath = [...path, node.key]
 
@@ -56,4 +56,4 @@ const build = (astTree) => {
   return iter(astTree, [])
 }
 
-export default (astTree) => build(astTree)
+export default astTree => build(astTree)
