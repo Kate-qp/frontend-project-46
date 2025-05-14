@@ -23,7 +23,7 @@ const format = (path, node) => {
   const renders = {
     added: addedType,
     removed: removedType,
-    changed: changedType,
+    changed: changedType
   }
 
   if (!_.has(renders, type)) {
