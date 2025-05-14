@@ -16,14 +16,14 @@ test('buildDiff stylish json', () => {
       + setting3: null
       + setting4: blah blah
       + setting5: {
-            key5: value5
+          key5: value5
         }
         setting6: {
-            doge: {
-              - wow: 
-              + wow: so much
-            }
-            key: value
+          doge: {
+            - wow: 
+            + wow: so much
+          }
+          key: value
           + ops: vops
         }
     }
@@ -32,24 +32,24 @@ test('buildDiff stylish json', () => {
       + baz: bars
         foo: bar
       - nest: {
-            key: value
+          key: value
         }
       + nest: str
     }
   - group2: {
         abc: 12345
         deep: {
-            id: 45
+          id: 45
         }
-    }
+      }
   + group3: {
         deep: {
-            id: {
-                number: 45
-            }
+          id: {
+            number: 45
+          }
         }
         fee: 100500
-    }
+      }
 }`)
 })
 
@@ -65,14 +65,14 @@ test('buildDiff stylish yml', () => {
       + setting3: null
       + setting4: blah blah
       + setting5: {
-            key5: value5
+          key5: value5
         }
         setting6: {
-            doge: {
-              - wow: 
-              + wow: so much
-            }
-            key: value
+          doge: {
+            - wow: 
+            + wow: so much
+          }
+          key: value
           + ops: vops
         }
     }
@@ -81,24 +81,24 @@ test('buildDiff stylish yml', () => {
       + baz: bars
         foo: bar
       - nest: {
-            key: value
+          key: value
         }
       + nest: str
     }
   - group2: {
         abc: 12345
         deep: {
-            id: 45
+          id: 45
         }
-    }
+      }
   + group3: {
         deep: {
-            id: {
-                number: 45
-            }
+          id: {
+            number: 45
+          }
         }
         fee: 100500
-    }
+      }
 }`)
 })
 
