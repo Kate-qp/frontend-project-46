@@ -1,24 +1,24 @@
-import js from '@eslint/js';
-import airbnb from 'eslint-config-airbnb-base';
-import stylistic from '@stylistic/eslint-plugin';
-import tsEslint from '@typescript-eslint/eslint-plugin';
+import stylisticJs from '@stylistic/eslint-plugin-js'
+import globals from 'globals'
 
 export default [
-  js.configs.recommended,
-  airbnb,
-  tsEslint.configs.recommended,
   {
+    files: ['**/*.js'],
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      },
+    },
     plugins: {
-      '@stylistic': stylistic
+      '@stylistic/js': stylisticJs,
     },
     rules: {
-      '@stylistic/indent': ['error', 2],
-      '@stylistic/semi': ['error', 'never'],
-      '@stylistic/comma-dangle': ['error', 'always-multiline'],
-      '@stylistic/arrow-parens': ['error', 'as-needed'],
-      '@stylistic/eol-last': ['error', 'always'],
-      'import/extensions': ['error', 'ignorePackages'],
-      'import/no-extraneous-dependencies': ['error', { devDependencies: true }]
-    }
-  }
+      '@stylistic/js/indent': ['error', 2],
+      '@stylistic/js/linebreak-style': ['error', 'unix'],
+      '@stylistic/js/quotes': ['error', 'single'],
+      '@stylistic/js/semi': ['error', 'never'],
+      '@stylistic/js/arrow-parens': ['error', 'always'],
+      '@stylistic/js/comma-dangle': ['error', 'always-multiline'],
+    },
+  },
 ]

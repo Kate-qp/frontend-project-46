@@ -4,11 +4,11 @@ import jsonFormat from './json.js'
 
 export default (diff, formatName) => {
   switch (formatName) {
-    case 'plain':
-      return plain(diff)
-    case 'json':
-      return jsonFormat(diff)
-    default:
-      return stylish(diff)
+  case 'plain':
+    return plain(diff)
+  case 'json':
+    return jsonFormat(diff)
+  default:
+    return stylish(diff)
   }
 }
